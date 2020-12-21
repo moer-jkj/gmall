@@ -50,7 +50,6 @@ class GmallSearchApplicationTests {
             if (CollectionUtils.isEmpty(spuEntities)){
                 break;
             }
-
             // 2.遍历当前页的spu查询出spu下所有的sku
             spuEntities.forEach(spuEntity -> {
                 ResponseVo<List<SkuEntity>> skuResponseVo = this.pmsClient.querySkusBySpuId(spuEntity.getId());
@@ -59,17 +58,14 @@ class GmallSearchApplicationTests {
                     // 3.把sku集合转化成goods集合
                     List<Goods> goodsList = skuEntities.stream().map(skuEntity -> {
                         Goods goods = new Goods();
-
                         // 设置sku相关信息
                         goods.setSkuId(skuEntity.getId());
                         goods.setTitle(skuEntity.getTitle());
                         goods.setSubTitle(skuEntity.getSubtitle());
                         goods.setDefaultImage(skuEntity.getDefaultImage());
                         goods.setPrice(skuEntity.getPrice().doubleValue());
-
                         // 设置spu的信息
                         goods.setCreateTime(spuEntity.getCreateTime());
-
                         // 设置库存相关信息
                         ResponseVo<List<WareSkuEntity>> wareResponseVo = this.wmsClient.queryWareSkusBySkuId(skuEntity.getId());
                         List<WareSkuEntity> wareSkuEntities = wareResponseVo.getData();
@@ -77,7 +73,6 @@ class GmallSearchApplicationTests {
                             goods.setSales(wareSkuEntities.stream().map(WareSkuEntity::getSales).reduce((a, b) -> a + b).get());
                             goods.setStore(wareSkuEntities.stream().anyMatch(wareSkuEntity -> wareSkuEntity.getStock() - wareSkuEntity.getStockLocked() > 0));
                         }
-
                         // 品牌
                         ResponseVo<BrandEntity> brandEntityResponseVo = this.pmsClient.queryBrandById(skuEntity.getBrandId());
                         BrandEntity brandEntity = brandEntityResponseVo.getData();
@@ -86,7 +81,6 @@ class GmallSearchApplicationTests {
                             goods.setBrandName(brandEntity.getName());
                             goods.setLogo(brandEntity.getLogo());
                         }
-
                         // 分类
                         ResponseVo<CategoryEntity> categoryEntityResponseVo = this.pmsClient.queryCategoryById(skuEntity.getCatagoryId());
                         CategoryEntity categoryEntity = categoryEntityResponseVo.getData();
@@ -94,7 +88,6 @@ class GmallSearchApplicationTests {
                             goods.setCategoryId(categoryEntity.getId());
                             goods.setCategoryName(categoryEntity.getName());
                         }
-
                         // 获取检索参数
                         List<SearchAttrValueVo> searchAttrValueVos = new ArrayList<>();
                         // 查询销售类型的检索参数
@@ -107,7 +100,6 @@ class GmallSearchApplicationTests {
                                 return searchAttrValueVo;
                             }).collect(Collectors.toList()));
                         }
-
                         // 查询基本类型的检索参数
                         ResponseVo<List<SpuAttrValueEntity>> spuAttrValueResponseVo = this.pmsClient.querySearchSpuAttrValuesByCidAndSpuId(skuEntity.getCatagoryId(), spuEntity.getId());
                         List<SpuAttrValueEntity> spuAttrValueEntities = spuAttrValueResponseVo.getData();
@@ -119,10 +111,8 @@ class GmallSearchApplicationTests {
                             }).collect(Collectors.toList()));
                         }
                         goods.setSearchAttrs(searchAttrValueVos);
-
                         return goods;
                     }).collect(Collectors.toList());
-
                     this.goodsRepository.saveAll(goodsList);
                 }
             });
@@ -160,7 +150,7 @@ class GmallSearchApplicationTests {
             spuEntities.forEach(spuEntity -> {
                 ResponseVo<List<SkuEntity>> skuResponseVo = this.pmsClient.querySkusBySpuId(spuEntity.getId());
                 List<SkuEntity> skuEntities = skuResponseVo.getData();
-                if (CollectionUtils.isEmpty(skuEntities)){
+                if (!CollectionUtils.isEmpty(skuEntities)){
                     // 3.把sku集合转换成goods集合
                     List<Goods> goodsList = skuEntities.stream().map(skuEntity -> {
                         Goods goods = new Goods();
@@ -208,6 +198,7 @@ class GmallSearchApplicationTests {
                                 return searchAttrValueVo;
                             }).collect(Collectors.toList()));
                         }
+
 
 
                         // 查询基本类型的检索参数
