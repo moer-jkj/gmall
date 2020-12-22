@@ -20,6 +20,11 @@ spring:
   elasticsearch:
     rest:
       uris: http://127.0.0.1:9200
+  # 响应数据过滤为null的字段
+  jackson:
+    default-property-inclusion: non_null
+  thymeleaf:
+    cache: false
 feign:
   sentinel:
     enabled: true

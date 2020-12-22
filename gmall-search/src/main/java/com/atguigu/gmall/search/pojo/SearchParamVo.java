@@ -8,7 +8,7 @@ import java.util.List;
 public class SearchParamVo {
 
     // 检索关键字
-    private String keyWord;
+    public String keyword;
 
     // 品牌过滤
     private List<Long> brandId;
@@ -26,7 +26,7 @@ public class SearchParamVo {
     private Integer sort;
     // 分页参数
     private Integer pageNum = 1;
-    //
-    private final Integer pageSize = 8;
+    // 分页大小
+    private final Integer pageSize = 10;
 
 }

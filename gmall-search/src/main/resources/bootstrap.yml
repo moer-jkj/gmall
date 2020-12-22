@@ -1,6 +1,6 @@
 spring:
   application:
-    name: searcch-service
+    name: search-service
   cloud:
     nacos:
       config:

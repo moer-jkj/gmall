@@ -11,7 +11,7 @@ public class SearchResponseVo {
 
     private List<BrandEntity> brands;
 
-    private List<CategoryEntity> categorys;
+    private List<CategoryEntity> categories;
 
     // 规格参数的过滤条件  [{attrId:4,attrName:"内存",attrValue:"8G","12G"}],
     // [{}]
