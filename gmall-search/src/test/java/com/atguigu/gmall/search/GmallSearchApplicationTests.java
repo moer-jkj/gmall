@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.util.CollectionUtils;
 
@@ -34,6 +35,15 @@ class GmallSearchApplicationTests {
 
     @Autowired
     private GmallWmsClient wmsClient;
+
+
+    @Test
+    void test1(){
+        List<String> list = new ArrayList<>();
+//        Object
+//        ApplicationContext
+    }
+
 
     @Test
     void add(){

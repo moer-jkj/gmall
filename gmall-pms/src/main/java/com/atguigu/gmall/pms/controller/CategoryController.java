@@ -1,5 +1,6 @@
 package com.atguigu.gmall.pms.controller;
 
+import java.awt.event.TextListener;
 import java.util.List;
 
 import io.swagger.annotations.Api;
@@ -33,6 +34,23 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+
+
+    // 根据categoryId查询三级分类
+    @GetMapping("all/{id}")
+    public ResponseVo<List<CategoryEntity>> queryLv123CategoriesByCid(@PathVariable("id")Long id){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryLv123CategoriesByCid(id);
+        return ResponseVo.ok(categoryEntities);
+    }
+
+
+    // 根据父分类id查询二级三级分类
+    @GetMapping("parent/withsub/{pid}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSubsByPid(@PathVariable("pid") Long pid){
+        List<CategoryEntity> categoryEntityList =  this.categoryService.queryCategoriesWithSubsByPid(pid);
+        return ResponseVo.ok(categoryEntityList);
+    }
+
 
     // 查询商品分类列表
     @ApiOperation("根据父id查询分类")

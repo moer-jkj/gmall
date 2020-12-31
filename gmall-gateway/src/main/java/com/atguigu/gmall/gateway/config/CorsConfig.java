@@ -12,10 +12,13 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter(){
 
+
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         // 允许访问的域名
         corsConfiguration.addAllowedOrigin("http://manager.gmall.com");
         corsConfiguration.addAllowedOrigin("http://localhost:1000");
+        corsConfiguration.addAllowedOrigin("http://www.gmall.com");
+        corsConfiguration.addAllowedOrigin("http://gmall.com");
         // 允许跨域请求的方法
         corsConfiguration.addAllowedMethod("*");
         // 允许携带的头信息
