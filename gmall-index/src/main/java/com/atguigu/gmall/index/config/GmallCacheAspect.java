@@ -36,7 +36,7 @@ public class GmallCacheAspect {
     public Object around(ProceedingJoinPoint joinPoint) throws  Throwable{
 
         // 获取切点方法的签名
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         // 获取方法对象
         Method method = signature.getMethod();
         // 获取方法上指定注解的对象

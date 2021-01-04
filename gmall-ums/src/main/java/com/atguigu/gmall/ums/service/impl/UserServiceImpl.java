@@ -52,6 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     public void regist(UserEntity userEntity, String code) {
         // 1.校验短信验证码
 
+
         // 2.生成盐
         String salt = StringUtils.substring(UUID.randomUUID().toString(),0,6);
         userEntity.setSalt(salt);
@@ -89,6 +90,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         }
 
         return null;
+    }
+
+    // 发送短信验证码
+    @Override
+    public void sendCode() {
+
     }
 
 }

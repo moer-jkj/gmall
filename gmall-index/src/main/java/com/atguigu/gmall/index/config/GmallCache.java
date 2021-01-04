@@ -28,6 +28,6 @@ public @interface GmallCache {
      * 使用人员指定分布式的锁key的前缀
      * 默认是 lock
      */
-    String lock() default "lock:";
+    String lock() default "lock";
 
 }
