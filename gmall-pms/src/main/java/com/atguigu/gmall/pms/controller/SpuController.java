@@ -39,8 +39,8 @@ public class SpuController {
     @Autowired
     private SpuService spuService;
 
-//    @Autowired
-//    private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @ApiOperation("spu商品信息查询")
     @GetMapping("category/{categoryId}")
@@ -101,7 +101,8 @@ public class SpuController {
     public ResponseVo update(@RequestBody SpuEntity spu){
 		spuService.updateById(spu);
 
-//        this.rabbitTemplate.convertAndSend("PMS_ITEM_EXCHANGE","item.update",spu);
+		// 假装修改成功，发送消息给 mq
+        this.rabbitTemplate.convertAndSend("PMS_ITEM_EXCHANGE","item.update",spu.getId());
 
         return ResponseVo.ok();
     }
