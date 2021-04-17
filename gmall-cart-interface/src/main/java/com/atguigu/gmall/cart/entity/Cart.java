@@ -1,4 +1,4 @@
-package com.atguigu.gmall.cart.pojo;
+package com.atguigu.gmall.cart.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

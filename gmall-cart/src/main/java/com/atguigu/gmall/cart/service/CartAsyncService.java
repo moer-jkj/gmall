@@ -1,7 +1,7 @@
 package com.atguigu.gmall.cart.service;
 
+import com.atguigu.gmall.cart.entity.Cart;
 import com.atguigu.gmall.cart.mapper.CartMapper;
-import com.atguigu.gmall.cart.pojo.Cart;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;

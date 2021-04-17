@@ -1,7 +1,7 @@
 package com.atguigu.gmall.cart.interceptor;
 
 import com.atguigu.gmall.cart.config.JwtProperties;
-import com.atguigu.gmall.cart.pojo.UserInfo;
+import com.atguigu.gmall.cart.entity.UserInfo;
 import com.atguigu.gmall.common.utils.CookieUtils;
 import com.atguigu.gmall.common.utils.JwtUtils;
 import org.apache.commons.lang.StringUtils;
@@ -10,7 +10,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
